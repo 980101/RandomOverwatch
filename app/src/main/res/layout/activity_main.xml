@@ -85,17 +85,5 @@
         android:text="확인"
         android:background="@drawable/button_default"/>
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/banner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-9461607447658521/6289902609">
-    </com.google.android.gms.ads.AdView>
-
 
 </LinearLayout>
