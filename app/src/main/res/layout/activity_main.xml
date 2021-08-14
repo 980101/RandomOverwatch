@@ -8,25 +8,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- 포지션 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="포지션"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="포지션"
-            android:textSize="20sp"
-            android:textStyle="bold|italic"/>
-
         <Button
             android:id="@+id/btn_tang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="@drawable/btn_pos_tang" />
 
@@ -34,7 +34,6 @@
             android:id="@+id/btn_deal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="@drawable/btn_pos_deal" />
 
@@ -42,42 +41,56 @@
             android:id="@+id/btn_heal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="@drawable/btn_pos_heal" />
 
     </LinearLayout>
 
+    <!-- 룰렛 아이템 수 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="룰렛 아이템 수"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginVertical="30dp">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="룰렛 아이템 수"
-            android:textSize="20sp"
-            android:textStyle="bold|italic"/>
+            android:text="1"
+            android:id="@+id/tv_num"/>
 
-        <EditText
-            android:id="@+id/et_num"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:layout_marginVertical="10dp"
-            android:layout_marginHorizontal="10dp"/>
+            android:orientation="vertical">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_up"
+                android:text="Up"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_down"
+                android:text="down"/>
+
+        </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
         android:background="@drawable/btn_check" />
 
 </LinearLayout>
