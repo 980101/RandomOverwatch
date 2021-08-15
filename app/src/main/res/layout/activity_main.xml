@@ -17,34 +17,31 @@
         android:textSize="20sp"
         android:textStyle="bold|italic"/>
 
-    <LinearLayout
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_tang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_pos_tang" />
+            android:button="@drawable/btn_pos_tang" />
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_deal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_pos_deal" />
+            android:button="@drawable/btn_pos_deal" />
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_heal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_pos_heal" />
+            android:button="@drawable/btn_pos_heal" />
 
-    </LinearLayout>
+    </RadioGroup>
 
     <!-- 룰렛 아이템 수 -->
     <TextView
