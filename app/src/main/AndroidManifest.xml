@@ -18,7 +18,7 @@
 
         <activity android:name=".HealRoulette" />
         <activity android:name=".DealRoulette" />
-        <activity android:name=".tangRoulette" />
+        <activity android:name=".TangRoulette" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden">

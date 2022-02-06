@@ -18,28 +18,26 @@
         android:textStyle="bold|italic"/>
 
     <RadioGroup
+        android:id="@+id/rg_pos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/btn_tang"
+            android:id="@+id/btn_pos_tang"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/btn_pos_tang" />
+            android:layout_height="wrap_content"/>
 
         <RadioButton
-            android:id="@+id/btn_deal"
+            android:id="@+id/btn_pos_deal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/btn_pos_deal" />
+            android:layout_height="wrap_content" />
 
         <RadioButton
-            android:id="@+id/btn_heal"
+            android:id="@+id/btn_pos_heal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/btn_pos_heal" />
+            android:layout_height="wrap_content" />
 
     </RadioGroup>
 
@@ -59,10 +57,10 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/tv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:id="@+id/tv_num"/>
+            android:text="1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -70,24 +68,24 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/btn_count_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_up"
                 android:text="Up"/>
 
             <Button
+                android:id="@+id/btn_count_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_down"
                 android:text="down"/>
 
         </LinearLayout>
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_check"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_complete"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_check" />
+        android:text="확인"/>
 
 </LinearLayout>

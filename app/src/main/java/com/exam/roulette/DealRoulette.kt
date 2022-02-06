@@ -19,7 +19,7 @@ class DealRoulette : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_deal_roulette)
 
-        val n = getIntent().getIntExtra("nItem", 16)
+        val n = getIntent().getIntExtra("num", 16)
 
         val names = arrayOf("겐지", "둠피스트", "리퍼", "솔저:76", "시메트라", "정크렛", "토르비욘", "트레이서",
         "맥크리", "메이", "바스티온", "애쉬", "에코", "위도우메이커", "파라", "한조")

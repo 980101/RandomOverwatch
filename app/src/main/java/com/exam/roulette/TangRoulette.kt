@@ -15,13 +15,13 @@ import kotlinx.android.synthetic.main.activity_tang_roulette.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class tangRoulette : AppCompatActivity() {
+class TangRoulette : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tang_roulette)
 
         //mainActivity에서 item 개수를 받아온다
-        val n = getIntent().getIntExtra("nItem", 8)
+        val n = getIntent().getIntExtra("num", 8)
 
         //string 배열
         val names = arrayOf("디바", "라인하르트", "레킹볼", "로드호그", "윈스턴", "자리야", "시그마", "오리사")

@@ -19,7 +19,7 @@ class HealRoulette : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_heal_roulette)
 
-        val n = getIntent().getIntExtra("nItem", 7)
+        val n = getIntent().getIntExtra("num", 7)
 
         val names = arrayOf("아나", "메르시", "젠야타", "루시우", "브리기테", "모이라", "바티스트")
 

@@ -1,141 +1,115 @@
 package com.exam.roulette
 
 import android.content.Intent
-import android.os.Bundle
-import android.text.TextUtils
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.RadioButton
+import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var tv_num : TextView
+
+    var number: Int
+    var position: String
+    var isChecked: Boolean
+
+    init {
+        number = 0
+        position = ""
+        isChecked = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var n:Int
+        tv_num = findViewById(R.id.tv_num)
 
-        //몇 번 버튼이 선택 되었는지 확인하는 변수
-        var x:Int = 0
+        // 클릭 이벤트 - 포지션
+        val btn_tang:RadioButton = findViewById(R.id.btn_pos_tang)
+        btn_tang.setOnClickListener(positionListener)
+        val btn_deal:RadioButton = findViewById(R.id.btn_pos_deal)
+        btn_deal.setOnClickListener(positionListener)
+        val btn_heal:RadioButton = findViewById(R.id.btn_pos_heal)
+        btn_heal.setOnClickListener(positionListener)
 
-        // 탱커 포지션 button 이 클릭 되었을 떄
-        btn_tang.setOnClickListener {
+        // 클릭 이벤트 - 룰렛 아이템 수
+        val btn_up:Button = findViewById(R.id.btn_count_up)
+        btn_up.setOnClickListener(numberListener)
+        val btn_down:Button = findViewById(R.id.btn_count_down)
+        btn_down.setOnClickListener(numberListener)
 
-            //입력 숫자 범위 알려주기
-            et_num.setHint("1~8 사이의 수를 입력하세요")
+        // 클릭 이벤트 - 확인
+        val btn_complete:Button = findViewById(R.id.btn_complete)
+        btn_complete.setOnClickListener(completeListener)
+    }
 
-            //et_num 안에 값이 있으면 없애주기 --> 조건이 없어도 될 것 같은데?
-            if (et_num != null)
-                et_num.getText().clear()
+    val positionListener = View.OnClickListener { view ->
+        initNumber()
 
-            x = 1
-
-            //선택 버튼의 색 변경
-            btn_tang.setBackgroundResource(R.drawable.button_checked)
-            btn_deal.setBackgroundResource(R.drawable.button_default)
-            btn_heal.setBackgroundResource(R.drawable.button_default)
-        }
-
-        // 딜러 포지션 button 이 클릭 되었을 때
-        btn_deal.setOnClickListener {
-
-            et_num.setHint("1~16 사이의 수를 입력하세요")
-
-            if (et_num != null)
-                et_num.getText().clear()
-
-            x = 2
-
-            btn_deal.setBackgroundResource(R.drawable.button_checked)
-            btn_tang.setBackgroundResource(R.drawable.button_default)
-            btn_heal.setBackgroundResource(R.drawable.button_default)
-        }
-
-        // 힐러 포지션 button 이 클릭 되었을 때
-        btn_heal.setOnClickListener {
-            et_num.setHint("1~7 사이의 수를 입력하세요")
-
-            if (et_num != null)
-                et_num.getText().clear()
-
-            x = 3
-
-            btn_heal.setBackgroundResource(R.drawable.button_checked)
-            btn_tang.setBackgroundResource(R.drawable.button_default)
-            btn_deal.setBackgroundResource(R.drawable.button_default)
-        }
-
-        //btn_check 이 클릭 되었을 때
-        btn_check.setOnClickListener {
-
-            //포지션이 선택된 경우
-            if (x != 0) {
-
-                //아이템 수가 입력 되어 있는지 확인
-                if (TextUtils.isEmpty(et_num.getText()) == true) {
-                    Toast.makeText(this@MainActivity, "아이템 수를 입력해주세요", Toast.LENGTH_SHORT).show()
-                }
-                else {
-                    n = et_num.getText().toString().toInt()
-
-                    when(x) {
-                        1 -> {
-                            //가능한 숫자 범위 제한
-                            if (0 < n && n < 9) {
-                                val intent = Intent(this, tangRoulette::class.java)
-
-                                //plainText로 입력받은 값은 getText로 바꿔줘야하나봄 (아니면 튕김)
-                                intent.putExtra("nItem", n)
-
-                                startActivity(intent)
-                            }
-                            else {
-                                //숫자 범위 조건에 맞지 않으면 toast 메시지 띄우기
-                                Toast.makeText(this@MainActivity, "1~8 사이의 숫자를 입력해주세요", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                        2 -> {
-                            if (0 < n && n < 17) {
-                                val intent = Intent(this, DealRoulette::class.java)
-
-                                //plainText로 입력받은 값은 getText로 바꿔줘야하나봄 (아니면 튕김)
-                                intent.putExtra("nItem", n)
-
-                                startActivity(intent)
-                            }
-                            else {
-                                Toast.makeText(this@MainActivity, "1~16 사이의 숫자를 입력해주세요", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                        3 -> {
-                            if (0 < n && n < 8) {
-                                val intent = Intent(this, HealRoulette::class.java)
-
-                                intent.putExtra("nItem", n)
-
-                                startActivity(intent)
-                            }
-                            else {
-                                Toast.makeText(this@MainActivity, "1~7 사이의 숫자를 입력해주세요", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                        else -> {
-                            Toast.makeText(this@MainActivity, "포지션을 선택해주세요", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
+        when (view.id) {
+            R.id.btn_pos_tang -> {
+                setting(8, "tang")
             }
-
-            //포지션이 선택되지 않은 경우
-            else {
-                Toast.makeText(this@MainActivity, "포지션을 선택해주세요", Toast.LENGTH_SHORT).show()
+            R.id.btn_pos_deal -> {
+                setting(16, "deal")
             }
-
+            R.id.btn_pos_heal -> {
+                setting(7, "heal")
+            }
         }
     }
+
+    val numberListener = View.OnClickListener { view ->
+        if (isChecked) {
+            var value = tv_num.text.toString().toInt()
+
+            when (view.id) {
+                R.id.btn_count_up -> tv_num.text = checkRange(value + 1).toString()
+                R.id.btn_count_down -> tv_num.text = checkRange(value - 1).toString()
+            }
+        } else {
+            Toast.makeText(this, "포지션을 선택하세요!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    val completeListener = View.OnClickListener { view ->
+        if (isChecked) {
+            lateinit var intent: Intent
+
+            when(position) {
+                "tang" -> intent = Intent(this, TangRoulette::class.java)
+                "deal" -> intent = Intent(this, DealRoulette::class.java)
+                "heal" -> intent = Intent(this, HealRoulette::class.java)
+            }
+
+            intent.putExtra("num", tv_num.text.toString().toInt())
+            startActivity(intent)
+
+        } else {
+            Toast.makeText(this, "설정을 완료해주세요!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // 포지션 선택 시 아이템 수를 초기화하는 메소드
+    fun initNumber() {
+        tv_num.text = "1"
+        isChecked = true
+    }
+
+    // 포지션 선택 시 룰렛 정보를 설정하는 메소드
+    fun setting(num:Int, pos:String) {
+        number = num
+        position = pos
+    }
+
+    fun checkRange(value: Int): Int {
+        if (value > number) return 1
+        else if (value < 1) return number
+        else return value
+    }
 }
-
-
