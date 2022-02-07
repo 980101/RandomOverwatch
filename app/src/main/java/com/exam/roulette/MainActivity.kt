@@ -3,15 +3,22 @@ package com.exam.roulette
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
-import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var tv_num : TextView
+    companion object {
+        const val TAG: String = "로그"
+    }
+
+    lateinit var myNumberView: MyNumberViewModel
 
     var number: Int
     var position: String
@@ -27,7 +34,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tv_num = findViewById(R.id.tv_num)
+        // 뷰모델 프로바이더를 통해 뷰모델 가져오기
+        // 라이프사이클을 가지고 있는 녀석을 넣어줌 즉 자기 자신
+        // 우리가 가져오고 싶은 뷰모델 클래스를 넣어서 뷰모델을 가져오기
+        myNumberView = ViewModelProvider(this).get(MyNumberViewModel::class.java)
+
+        // 뷰모델이 가지고 있는 값의 변경사항을 관찰할 수 있는 라이브 데이터를 옵저빙한다.
+        myNumberView.currentValue.observe(this, Observer {
+            Log.d(TAG, "MainActivity - myNumberViewModel - currentValue 라이브 데이터 값 변경 : $it")
+            number_textview.text = it.toString()
+        })
 
         // 클릭 이벤트 - 포지션
         val btn_tang:RadioButton = findViewById(R.id.btn_pos_tang)
@@ -66,11 +82,13 @@ class MainActivity : AppCompatActivity() {
 
     val numberListener = View.OnClickListener { view ->
         if (isChecked) {
-            var value = tv_num.text.toString().toInt()
 
+            // 뷰모델에 라이브데이터 값을 변경하는 메소드 실행
             when (view.id) {
-                R.id.btn_count_up -> tv_num.text = checkRange(value + 1).toString()
-                R.id.btn_count_down -> tv_num.text = checkRange(value - 1).toString()
+                R.id.btn_count_up ->
+                    myNumberView.updateValue(actionType = ActionType.PLUS, number)
+                R.id.btn_count_down ->
+                    myNumberView.updateValue(actionType = ActionType.MINUS, number)
             }
         } else {
             Toast.makeText(this, "포지션을 선택하세요!", Toast.LENGTH_SHORT).show()
@@ -87,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 "heal" -> intent = Intent(this, HealRoulette::class.java)
             }
 
-            intent.putExtra("num", tv_num.text.toString().toInt())
+            intent.putExtra("num", number_textview.text.toString().toInt())
             startActivity(intent)
 
         } else {
@@ -97,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
     // 포지션 선택 시 아이템 수를 초기화하는 메소드
     fun initNumber() {
-        tv_num.text = "1"
+        number_textview.text = "1"
         isChecked = true
     }
 
@@ -105,11 +123,5 @@ class MainActivity : AppCompatActivity() {
     fun setting(num:Int, pos:String) {
         number = num
         position = pos
-    }
-
-    fun checkRange(value: Int): Int {
-        if (value > number) return 1
-        else if (value < 1) return number
-        else return value
     }
 }
