@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,12 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     var number: Int
     var position: String
-    var isChecked: Boolean
 
     init {
-        number = 0
-        position = ""
-        isChecked = false
+        number = 8
+        position = "tang"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,21 +42,18 @@ class MainActivity : AppCompatActivity() {
         })
 
         // 클릭 이벤트 - 포지션
-        val btn_tang:RadioButton = findViewById(R.id.btn_pos_tang)
+        val btn_tang:RadioButton = findViewById(R.id.position_tang_radio)
         btn_tang.setOnClickListener(positionListener)
-        val btn_deal:RadioButton = findViewById(R.id.btn_pos_deal)
+        val btn_deal:RadioButton = findViewById(R.id.position_deal_radio)
         btn_deal.setOnClickListener(positionListener)
-        val btn_heal:RadioButton = findViewById(R.id.btn_pos_heal)
+        val btn_heal:RadioButton = findViewById(R.id.position_heal_radio)
         btn_heal.setOnClickListener(positionListener)
 
         // 클릭 이벤트 - 룰렛 아이템 수
-        val btn_up:Button = findViewById(R.id.btn_count_up)
-        btn_up.setOnClickListener(numberListener)
-        val btn_down:Button = findViewById(R.id.btn_count_down)
-        btn_down.setOnClickListener(numberListener)
+        count_up_btn.setOnClickListener(numberListener)
+        count_down_btn.setOnClickListener(numberListener)
 
         // 클릭 이벤트 - 확인
-        val btn_complete:Button = findViewById(R.id.btn_complete)
         btn_complete.setOnClickListener(completeListener)
     }
 
@@ -68,55 +61,44 @@ class MainActivity : AppCompatActivity() {
         initNumber()
 
         when (view.id) {
-            R.id.btn_pos_tang -> {
+            R.id.position_tang_radio -> {
                 setting(8, "tang")
             }
-            R.id.btn_pos_deal -> {
+            R.id.position_deal_radio -> {
                 setting(16, "deal")
             }
-            R.id.btn_pos_heal -> {
+            R.id.position_heal_radio -> {
                 setting(7, "heal")
             }
         }
     }
 
     val numberListener = View.OnClickListener { view ->
-        if (isChecked) {
-
-            // 뷰모델에 라이브데이터 값을 변경하는 메소드 실행
-            when (view.id) {
-                R.id.btn_count_up ->
-                    myNumberView.updateValue(actionType = ActionType.PLUS, number)
-                R.id.btn_count_down ->
-                    myNumberView.updateValue(actionType = ActionType.MINUS, number)
-            }
-        } else {
-            Toast.makeText(this, "포지션을 선택하세요!", Toast.LENGTH_SHORT).show()
+        // 뷰모델에 라이브데이터 값을 변경하는 메소드 실행
+        when (view.id) {
+            R.id.count_up_btn ->
+                myNumberView.updateValue(actionType = ActionType.PLUS, number)
+            R.id.count_down_btn ->
+                myNumberView.updateValue(actionType = ActionType.MINUS, number)
         }
     }
 
     val completeListener = View.OnClickListener { view ->
-        if (isChecked) {
-            lateinit var intent: Intent
+        lateinit var intent: Intent
 
-            when(position) {
-                "tang" -> intent = Intent(this, TangRoulette::class.java)
-                "deal" -> intent = Intent(this, DealRoulette::class.java)
-                "heal" -> intent = Intent(this, HealRoulette::class.java)
-            }
-
-            intent.putExtra("num", number_textview.text.toString().toInt())
-            startActivity(intent)
-
-        } else {
-            Toast.makeText(this, "설정을 완료해주세요!", Toast.LENGTH_SHORT).show()
+        when(position) {
+            "tang" -> intent = Intent(this, TangRoulette::class.java)
+            "deal" -> intent = Intent(this, DealRoulette::class.java)
+            "heal" -> intent = Intent(this, HealRoulette::class.java)
         }
+
+        intent.putExtra("num", number_textview.text.toString().toInt())
+        startActivity(intent)
     }
 
     // 포지션 선택 시 아이템 수를 초기화하는 메소드
     fun initNumber() {
         number_textview.text = "1"
-        isChecked = true
     }
 
     // 포지션 선택 시 룰렛 정보를 설정하는 메소드

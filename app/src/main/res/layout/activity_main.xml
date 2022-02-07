@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:padding="10dp"
@@ -18,24 +19,25 @@
         android:textStyle="bold|italic"/>
 
     <RadioGroup
-        android:id="@+id/rg_pos"
+        android:id="@+id/position_radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:checkedButton="@id/position_tang_radio"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/btn_pos_tang"
+            android:id="@+id/position_tang_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <RadioButton
-            android:id="@+id/btn_pos_deal"
+            android:id="@+id/position_deal_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <RadioButton
-            android:id="@+id/btn_pos_heal"
+            android:id="@+id/position_heal_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -68,13 +70,13 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_count_up"
+                android:id="@+id/count_up_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Up"/>
 
             <Button
-                android:id="@+id/btn_count_down"
+                android:id="@+id/count_down_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="down"/>
@@ -87,5 +89,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="확인"/>
-
 </LinearLayout>
