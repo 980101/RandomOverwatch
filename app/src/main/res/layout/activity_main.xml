@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="@dimen/space_midium"
     android:gravity="center"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,53 +10,68 @@
     tools:context=".MainActivity">
 
     <!-- 포지션 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="포지션"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"/>
-
     <RadioGroup
         android:id="@+id/position_radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@id/position_tang_radio"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:showDividers="middle"
+        android:divider="@drawable/divider_empty_midium"
+        android:orientation="horizontal"
+        android:checkedButton="@id/position_tang_radio">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="포지션"
+            android:textSize="@dimen/letter_large"
+            android:textStyle="bold|italic"/>
 
         <RadioButton
             android:id="@+id/position_tang_radio"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/space_large"
+            android:paddingVertical="@dimen/space_midium"
+            android:background="@drawable/background_radiobutton"
+            android:button="@null"
+            android:text="tank"/>
 
         <RadioButton
             android:id="@+id/position_deal_radio"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/space_large"
+            android:paddingVertical="@dimen/space_midium"
+            android:background="@drawable/background_radiobutton"
+            android:button="@null"
+            android:text="deal"/>
 
         <RadioButton
             android:id="@+id/position_heal_radio"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/space_large"
+            android:paddingVertical="@dimen/space_midium"
+            android:background="@drawable/background_radiobutton"
+            android:button="@null"
+            android:text="heal"/>
 
     </RadioGroup>
 
     <!-- 룰렛 아이템 수 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="룰렛 아이템 수"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:paddingVertical="@dimen/space_large"
+        android:showDividers="middle"
+        android:divider="@drawable/divider_empty_midium">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="룰렛 아이템 수"
+            android:textSize="@dimen/letter_large"
+            android:textStyle="bold|italic"/>
 
         <TextView
             android:id="@+id/number_textview"

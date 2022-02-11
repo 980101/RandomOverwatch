@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 마진, 패딩 -->
+    <dimen name="space_micro">2dp</dimen>
+    <dimen name="space_small">5dp</dimen>
+    <dimen name="space_midium">10dp</dimen>
+    <dimen name="space_large">20dp</dimen>
+
+    <!-- 텍스트 -->
+    <dimen name="letter_large">20sp</dimen>
+</resources>

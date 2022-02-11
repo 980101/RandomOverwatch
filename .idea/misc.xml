@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jung Hye-ju/AndroidStudioProjects/roulette/app/src/main/res/drawable/background_radiobutton.xml" value="0.20234375" />
+        <entry key="..\:/Users/Jung Hye-ju/AndroidStudioProjects/roulette/app/src/main/res/drawable/divider_empty_midium.xml" value="0.20234375" />
+        <entry key="..\:/Users/Jung Hye-ju/AndroidStudioProjects/roulette/app/src/main/res/drawable/radiobutton_focused.xml" value="0.20234375" />
+        <entry key="..\:/Users/Jung Hye-ju/AndroidStudioProjects/roulette/app/src/main/res/drawable/radiobutton_unfocused.xml" value="0.20234375" />
         <entry key="..\:/Users/Jung Hye-ju/AndroidStudioProjects/roulette/app/src/main/res/layout/activity_main.xml" value="0.2" />
       </map>
     </option>
