@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     lateinit var myNumberView: MyNumberViewModel
+    lateinit var myPositionView: MyPositionViewModel
 
     var number: Int
     var position: String
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         // 라이프사이클을 가지고 있는 녀석을 넣어줌 즉 자기 자신
         // 우리가 가져오고 싶은 뷰모델 클래스를 넣어서 뷰모델을 가져오기
         myNumberView = ViewModelProvider(this).get(MyNumberViewModel::class.java)
+        myPositionView = ViewModelProvider(this).get(MyPositionViewModel::class.java)
 
         // 뷰모델이 가지고 있는 값의 변경사항을 관찰할 수 있는 라이브 데이터를 옵저빙한다.
         myNumberView.currentValue.observe(this, Observer {
@@ -41,13 +44,15 @@ class MainActivity : AppCompatActivity() {
             number_textview.text = it.toString()
         })
 
+        myPositionView.currentButton.observe(this, Observer {
+            // radio group이 선택하고 있는 버튼을 변경
+            position_radioGroup.check(it)
+        })
+
         // 클릭 이벤트 - 포지션
-        val btn_tang:RadioButton = findViewById(R.id.position_tang_radio)
-        btn_tang.setOnClickListener(positionListener)
-        val btn_deal:RadioButton = findViewById(R.id.position_deal_radio)
-        btn_deal.setOnClickListener(positionListener)
-        val btn_heal:RadioButton = findViewById(R.id.position_heal_radio)
-        btn_heal.setOnClickListener(positionListener)
+        position_tang_radio.setOnClickListener(positionListener)
+        position_deal_radio.setOnClickListener(positionListener)
+        position_heal_radio.setOnClickListener(positionListener)
 
         // 클릭 이벤트 - 룰렛 아이템 수
         count_up_btn.setOnClickListener(numberListener)
@@ -63,12 +68,15 @@ class MainActivity : AppCompatActivity() {
         when (view.id) {
             R.id.position_tang_radio -> {
                 setting(8, "tang")
+                myPositionView.updateButton(positionType = PositionType.TANG)
             }
             R.id.position_deal_radio -> {
                 setting(16, "deal")
+                myPositionView.updateButton(positionType = PositionType.DEAL)
             }
             R.id.position_heal_radio -> {
                 setting(7, "heal")
+                myPositionView.updateButton(positionType = PositionType.HEAL)
             }
         }
     }
