@@ -28,10 +28,14 @@ class MyNumberViewModel : ViewModel() {
     // 초기값 설정
     init {
         Log.d(TAG, "MyNumberViewModel - 생성자 호출")
-        _currentValue.value = 0
+        _currentValue.value = 1
     }
 
     // 뷰모델이 가지고 있는 값을 변경하는 메소드
+    fun initValue() {
+        _currentValue.value = 1
+    }
+
     fun updateValue(actionType: ActionType, maxValue: Int) {
         var result: Int? = 0
 

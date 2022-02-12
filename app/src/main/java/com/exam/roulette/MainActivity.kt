@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
@@ -106,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     // 포지션 선택 시 아이템 수를 초기화하는 메소드
     fun initNumber() {
-        number_textview.text = "1"
+        myNumberView.initValue()
     }
 
     // 포지션 선택 시 룰렛 정보를 설정하는 메소드
