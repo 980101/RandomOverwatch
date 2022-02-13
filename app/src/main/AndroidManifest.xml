@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.exam.roulette">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.exam.roulette" >
 
     <application
         android:allowBackup="true"
@@ -10,33 +8,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <!-- 애드몹 메타데이터 -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9461607447658521~7553839237" />
+        android:theme="@style/AppTheme" >
 
-        <activity android:name=".HealRoulette" />
-        <activity android:name=".DealRoulette" />
-        <activity android:name=".TangRoulette" />
-        <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden">
+        <activity android:name=".SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- Splash Activity -->
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".HealRoulette" />
+        <activity android:name=".DealRoulette" />
+        <activity android:name=".TangRoulette" />
     </application>
 
 </manifest>
