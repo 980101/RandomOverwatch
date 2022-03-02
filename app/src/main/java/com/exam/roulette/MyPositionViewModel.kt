@@ -18,7 +18,7 @@ class MyPositionViewModel: ViewModel() {
         _currentButton.postValue(R.id.position_tang_radio)
     }
 
-    fun updateButton(positionType: PositionType) {
+    fun updatePosition(positionType: PositionType) {
         when(positionType) {
             PositionType.TANG ->
                 _currentButton.postValue(R.id.position_tang_radio)
@@ -27,5 +27,17 @@ class MyPositionViewModel: ViewModel() {
             PositionType.HEAL ->
                 _currentButton.postValue(R.id.position_heal_radio)
         }
+    }
+
+    fun checkTang() {
+        updatePosition(PositionType.TANG)
+    }
+
+    fun checkDeal() {
+        updatePosition(PositionType.DEAL)
+    }
+
+    fun checkHeal() {
+        updatePosition(PositionType.HEAL)
     }
 }
