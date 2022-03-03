@@ -1,15 +1,10 @@
 package com.exam.roulette
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MyNumberViewModel : ViewModel() {
-
-    companion object {
-        const val TAG: String = "로그"
-    }
 
     // 내부에서 설정하는 자료형은 뮤터블로
     // 변경가능하도록 설정
@@ -27,7 +22,6 @@ class MyNumberViewModel : ViewModel() {
 
     // 초기값 설정
     init {
-        Log.d(TAG, "MyNumberViewModel - 생성자 호출")
         _currentValue.value = 1
         _maxValue.value = 8
     }

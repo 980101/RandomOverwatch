@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.DataBindingUtil
 import com.exam.roulette.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         // 뷰모델이 가지고 있는 값의 변경사항을 관찰할 수 있는 라이브 데이터를 옵저빙한다.
         myPositionView.currentButton.observe(this, Observer {
             // radio group이 선택하고 있는 버튼을 변경
+            myNumberView.initValue()
             myNumberView.updateRange(it)
         })
 
@@ -38,10 +39,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun completeListener(view: View) {
-        lateinit var intent: Intent
+    fun loadRoulette(view: View) {
 
-        val pos = myPositionView.currentButton.toString().toInt()
+        val pos = myPositionView.currentButton.value
+        val num = myNumberView.currentValue.value
+
+        lateinit var intent: Intent
 
         when(pos) {
             R.id.position_tang_radio -> intent = Intent(this, TangRoulette::class.java)
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             R.id.position_heal_radio -> intent = Intent(this, HealRoulette::class.java)
         }
 
-        intent.putExtra("num", myNumberView.currentValue.toString().toInt())
+        intent.putExtra("num", num)
         startActivity(intent)
     }
 }
