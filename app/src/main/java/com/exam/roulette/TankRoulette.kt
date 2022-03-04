@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_tang_roulette.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TangRoulette : AppCompatActivity() {
+class TankRoulette : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tang_roulette)

@@ -20,7 +20,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".HealRoulette" />
         <activity android:name=".DealRoulette" />
-        <activity android:name=".TangRoulette" />
+        <activity android:name=".TankRoulette" />
     </application>
 
 </manifest>

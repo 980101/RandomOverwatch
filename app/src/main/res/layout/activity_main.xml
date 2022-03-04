@@ -38,7 +38,7 @@
                 android:textStyle="bold|italic"/>
 
             <RadioButton
-                android:id="@+id/position_tang_radio"
+                android:id="@+id/position_tank_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/space_large"
@@ -46,7 +46,7 @@
                 android:background="@drawable/background_radiobutton"
                 android:button="@null"
                 android:text="tank"
-                android:onClick="@{()->position.checkTang()}"/>
+                android:onClick="@{()->position.updateToTank()}"/>
 
             <RadioButton
                 android:id="@+id/position_deal_radio"
@@ -57,7 +57,7 @@
                 android:background="@drawable/background_radiobutton"
                 android:button="@null"
                 android:text="deal"
-                android:onClick="@{()->position.checkDeal()}"/>
+                android:onClick="@{()->position.updateToDeal()}"/>
 
             <RadioButton
                 android:id="@+id/position_heal_radio"
@@ -68,7 +68,7 @@
                 android:background="@drawable/background_radiobutton"
                 android:button="@null"
                 android:text="heal"
-                android:onClick="@{()->position.checkHeal()}"/>
+                android:onClick="@{()->position.updateToHeal()}"/>
 
         </RadioGroup>
 
